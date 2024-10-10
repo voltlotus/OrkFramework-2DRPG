@@ -1,4 +1,185 @@
 -------------------------------------------------------------------------------------------------------------------------------------------------------
+ORK Framework 3.18.1
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Fixes:
+- Menu Screens: Quest: Fixed an issue where adding a back button to the 'Info Box' without enabling 'Use Activation Choice' didn't add a back button.
+- Menu Screens: Sorting: Buy/Sell Price: Fixed an issue where price sorting could be wrong when displayed for all item types and having special content (e.g. combatants, quests, etc.) in the list).
+- Move AIs: Fixed an issue where following the group leader could cause an error after scene changes.
+- Grid Battles, Move AIs: Fixed an issue where the move AI could cause wrong combatant placements in battles when auto respawn was enabled (i.e. combatants too far away from group leader).
+- Battle Grid Highlights: Line Renderer: Fixed an issue where the 'Enclosed Cells' setting was used inversed, i.e. enabling it wasn't using cell enclosing, disabling it was using cell enclosing.
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+ORK Framework 3.18.0
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+New:
+- Unity 6: ORK Framework 3 now supports Unity 6.
+- Game Settings: Player/Group Settings: 'Use Empty Battle Positions' setting available. The battle group can now have empty positions between combatants, e.g. having a combatant at position 0 and 2, leaving position 1 unoccupied. Empty positions can be used in group menu screens and battle spot placement. By default enabled (previous behaviour).
+- Combatant Creation: 'Set Battle Group Index' settings available. Set a newly created combatant's index in the battle group, e.g. index 1 for being the 2nd battle group member. Only used when using 'Use Empty Battle Positions' in the player/group settings. Available everywhere a combatant is created, e.g. in combatant groups, 'Battle' components, 'Join Group' schematic nodes, etc.
+- Combatant Creation: 'Use Combatant Type' settings available. Optionally use a random combatant from a defined combatant type instead of a defined combatant when creating combatants.
+- Combatants: Price Settings: 'Price Settings' available. Combatants can now be sold to shops. Previously they could only be bought. The new price settings replace the 'Buy Price' setting (previous data is updated automatically).
+- Float Values: Status Effect Duration: 'Status Effect Duration' value type available. The duration of a defined status effect applied to a combatant is used as value.
+- Float Values: Status Effect Count (All), Status Effect Count (Type): 'Add Hidden Effects' setting available. Define if hidden status effects will be included, excluded or only hidden effects will be counted. Defaults to include hidden effects (previous behavoiur).
+- Animations: Custom: Play Function: 'Returns Duration' setting available. If enabled, the play function will require to return a float value representing the animation's duration. If disabled, a separate 'Duration Function' returning a float value for the animation's duration can be used.
+- Status Effects: Duration: 'Status Value Change' type available. Status effect duration is reduced when a defined status value of the target was changed. Can optionally check the change value, e.g. limiting to negative or positive changes.
+- Status Effects: Duration: 'Selected As Target' type available. Status effect duration is reduced when the effect's target was selected as target of an action (i.e. an action targeting the combatant was added to the system). Can optionally be limited to actions of the effect's user or allies/enemies.
+- Status Effects: Duration: Action Start, Action End: 'Is Action User' and 'Is Action Target' settings available. Status effect duration based on actions starting/ending can now also use actions targeting the effect's target. Can optionally be limited to actions of the effect's user or allies/enemies. 'Is Action User' is by default enabled, keeping the previous behaviour.
+- Status Effects: Status Changes: Use On: 'Status Value Change' type available. Status changes are used when a defined status value of the target was changed. Can optionally check the change value, e.g. limiting to negative or positive changes.
+- Status Effects: Status Changes: Use On: 'Selected As Target' type available. Status changes are used when the effect's target was selected as target of an action (i.e. an action targeting the combatant was added to the system). Can optionally be limited to actions of the effect's user or allies/enemies.
+- Status Effects: Status Changes: Use On: Action Start, Action End: 'Is Action User' and 'Is Action Target' settings available. Status changes based on actions starting/ending can now also use actions targeting the effect's target. Can optionally be limited to actions of the effect's user or allies/enemies. 'Is Action User' is by default enabled, keeping the previous behaviour.
+- Status Effects: Status Changes: Tagged Machine: 'Tagged Machine' status change type available. Starts a tagged machine on the combatant's game object.
+- Abilities, Items: Status Changes: Tagged Machine: 'Tagged Machine' status change type available. Starts a tagged machine on the combatant's game object.
+- Abilities: Schematics: 'Level Up Schematic' setting available. Optionally use a schematic when an ability is leveled up. The combatant used for leveling up (usually the combatant knowing it) will be used as 'Machine Object' and 'Starting Object'. The ability is available as (local) selected data with the key 'action'.
+- Abilities, Equipment, Research Trees, Status Development: Override Content: 'Custom Content' settings available. Override content of ability/equipment levels, research tree items or status development upgrades can now override custom content. Adding a custom content setup for the same content key will replace the original setup's content with the override content. Also allows using content keys that are not used by the original content.
+- Inventory Settings: 'Keep 0 Quantity' setting available. Optionally keep inventory content that is removed with a quantity of 0 in the inventory.
+- Item Types: Inventory Settings: 'Keep 0 Quantity' setting available. Optionally override the default 'Keep 0 Quantity' setting defined in 'Inventory > Inventory Settings'.
+- Items, Equipment, AI Behaviours, AI Rulesets, Crafting Recipes: 'Keep 0 Quantity' setting available. Optionally override the default 'Keep 0 Quantity' setting defined in 'Inventory > Inventory Settings'. AI behaviours/rulesets only have this available when they use quantity, crafting recipes only have it when they can be consumed.
+- Notifications, Item Types, Equipment: 'Equipment Equipped' and 'Equipment Unequipped' notifications available. Optionally display notification UI boxes when a player group member equipped or unequipped equipment.
+- Console Settings, Item Types, Equipment: 'Equipment Equipped' and 'Equipment Unequipped' console texts available. Optionally add console texts when a player group member equipped or unequipped equipment.
+- Status Conditions: Battle Menu Open: 'Battle Menu Open' condition type available. The combatant's battle menu must or mustn't be opened.
+- Status Conditions: Is Affected Target: 'Is Affected Target' condition type available. The combatant must or mustn't be an affected target during the player's target selection (only used when the player selects targets). Affected targets are combatants within the affect range of a selected target.
+- Status Conditions: Is Defending: 'Is Defending' condition type available. The combatant must or mustn't be defending.
+- Status Conditions: Status Effect Any, Status Effect Type: 'Add Hidden Effects' setting available. Define if hidden status effects will be included, excluded or only hidden effects will be checked. Defaults to include hidden effects (previous behavoiur).
+- Battle Menus: Options: Status Changes: Tagged Machine: 'Tagged Machine' status change type available. Starts a tagged machine on the combatant's game object.
+- Battle Menus, Menu Screens, Shop Layouts: Description: 'At Input Position' settings available when not using 'Always Visible'. Optionally place the descrition's UI box based on the selected input button's position.
+- Menu Screens: Group: 'Auto Select Available' setting available in '1st Group Box Settings'. Optionally have the first available combatant of the list selected when opening the 1st group box. E.g. when using empty battle group positions, this will skip empty buttons and have the first combatant selected.
+- Grid Battles: Move Command: Cell Selection Schematics: 'Cell Selection Schematics' settings available. Optionally start a schematic when selecting a cell. The user will be used as 'Machine Object', the selected cell as 'Starting Object'. If a valid path cell is selected, the path to the cell is available as local selected data via the data key 'path'.
+- Grid Battles: Move Command: Potential Attack Highlights: 'Potential Attack Highlights' settings available. Optionally highlight enemies that can attack the selected cell. This uses the enemy's move range and action use ranges to determine if the enemy can attack a cell. Highlights can use the usual combatant highlights (e.g. prefab, color fading or schematics) as well as special schematic highlights with additional information available (e.g. selected cell).
+- Grid Battles: Orientation Selection, Combatant Placement, Target Cell Selection, Examine Grid: Cell Selection Schematics: 'Cell Selection Schematics' settings available. Optionally start a schematic when selecting a cell. The user will be used as 'Machine Object', the selected cell as 'Starting Object'.
+- Inventory Settings: Item Collection: Collection Dialogue: 'HUD Type' settings available for 'Item Message', 'Currency Message' and 'Combatant Message' settings. Optionally use a HUD template or shortcut UI for the item that will be collected.
+- Equipment, Inventory Settings: Schematics: 'Level Up Schematic' setting available. Optionally use a schematic when an equipment is leveled up. The combatant used for leveling up (usually the combatant wearing it) will be used as 'Machine Object' and 'Starting Object'. The equipment is available as (local) selected data with the key 'action'.
+- Combatants: Body Parts: Death Status Changes: Tagged Machine: 'Tagged Machine' status change type available. Starts a tagged machine on the combatant's game object.
+- Combatants: Grid Settings: 'Grid Move Over' settings available. Optionally override the 'Move Over Allies' and 'Move Over Enemies' settings of the grid move command for a combatant.
+- Schematics: Actors: Player Group: 'Member' settings available when using 'Current' combatant scope. You can now use the 'Leader' of the group, a 'Member By Index' (group or battle group) or member(s) matching defined conditions (group or battle group).
+- Schematics: Change Defending State: 'Change Defending State' node available in 'Battle > Combatant' nodes. Changes the defending state of a combatant, either defending or not defending.
+- Schematics: Ability Level Points: 'Ability Level Points' node available in 'Combatant > Ability' nodes. Increases the level points of abilities currently stored in selected data. Level points are the experience or uses needed to level up an ability.
+- Schematics: Equipment Level Points: 'Equipment Level Points' node available in 'Inventory > Equipment' nodes. Increases the level points of equipment currently stored in selected data. Level points are the experience or uses needed to level up an equipment.
+- Schematics: Join Battle Group: 'Set Battle Group Index' settings available. Set the combatant's index in the battle group, e.g. index 1 for being the 2nd battle group member. Only used when using 'Use Empty Battle Positions' in the player/group settings.
+- Schematics: Join Group: 'Get From' setting available, replacing 'Use Game Object' and 'Use Combatant Group' settings. The combatant joining the group can be created using a defined combatant, a random combatant of a defined combatant type, a defined combatant group or use an existing combatant from a defined object (e.g. 'Machine Object').
+- Unity UI: HUD Attack Modifier List, HUD Defence Modifier List, HUD Defence Modifier ID List, HUD Status Effect List, HUD Status Value List: 'Total Combatant Bonus' setting available when using 'Show Status Bonus'. Optionally display the total status bonus of a combatant (i.e. from equipment, status effects, etc.) instead of only the bonus defined in the settings of the combatant. Only used if a combatant is displayed, otherwise just displays the bonus of the displayed content.
+- Unity UI: Content Providers: HUD Attack Modifier Attribute, HUD Attack Modifier, HUD Defence Modifier Attribute, HUD Defence Modifier, HUD Defence Modifier ID, HUD Status Value: 'Total Combatant Bonus' setting available when using 'Show Status Bonus'. Optionally display the total status bonus of a combatant (i.e. from equipment, status effects, etc.) instead of only the bonus defined in the settings of the combatant. Only used if a combatant is displayed, otherwise just displays the bonus of the displayed content.
+- Unity UI: HUD Conditions: Quantity: 'Quantity' condition available. Checks if the HUD user is an inventory content (e.g. item, equipment, etc.) matching a defined quantity check. E.g. use this to only show quantity for items with a quantity greater than 1.
+
+Changes:
+- Abilities: Schematics: The 'Add Schematic' is no longer used by ability level ups, using the new 'Level Up Schematic' instead. Previous settings will updated automatically and load the 'Add Schematic' also for the 'Level Up Schematic'.
+- Abilities, Equipment: Passive abilities and equipment will now remove the old level's status effects and add the new level's status effects on level up.
+- Status Effects: Removing a status effect from a combatant now happens after status changes used on 'Remove'. This allows using the new 'Status Effect Duration' float value type in those status changes, but might impact previous setups that check for status effects during their removal.
+- Status Conditions: Combatant Type: Now also checks the secondary types of the combatant.
+- Inventory: Adding quantity of items, currency, etc. is now overflow-safe.
+- Move AIs: Certain move AI calls will now take the combatant's move AI block state into account instead of only the battle system allowing using move AI for the combatant.
+- Shops: You can now sell combatants to shops.
+- Schematics: Actors: Player Group: 'Use Member' toggle has been replaced by 'Member' popup field. You can now use either the leader, a member defined by index or member(s) matching defined conditions. Previous settings will be updated automatically and retain their functionality.
+- Schematics: Join Group: 'Get From' setting replaces 'Use Game Object' and 'Use Combatant Group' settings. Previous settings will be updated automatically.
+
+Fixes:
+- Classes, Class Slots: Fixed an issue where equipping a class without status development on a class slot that allows using status development caused an error.
+- Inventory, Equipment Slots: Fixed an issue where using 'Add Inventory Space' enabled in an equipment slot's settings could lead to wrong occupied inventory space when using 'Group' inventory.
+- Text Codes: Fixed an issue where text codes for sub-data where not used.
+- Status Bonuses, Random Status Bonuses: Status Value Percent: Fixed an issue caused by floating point imprecision that could lead to final bonuses being off by 1.
+- Move AIs: Fixed an issue where changing the active player group could lead to an error when the move AI was following the group leader.
+- Battles: Fixed an issue where returning to the start menu during a running battle could keep a battle's game object alive.
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+ORK Framework 3.17.1
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+New:
+- Player Controls: Mouse: 'Manage Move To Interaction' setting available. Provides a better integration with moving to interaction. When a move to an interaction starts, this will update the mouse control's cursor position and cancel movement to interaction when the player controls receive a new movement click.
+- Battle Menus: Message Content: 'Message Content' settings available. Add a message (including HUD) to battle menus. Optionally use different messages in the root and sub-menus.
+- Battle Menus, Target Settings: Target Menu: 'Hide Multi Mode Menu' setting available when not showing a target menu (i.e. 'Use Target Menu' setting disabled). Optionally hide the battle menu's UI boxes when using multi mode without a target menu during target selection.
+- Battle AIs: Ability: 'Add Hidden Abilities' setting available when using a random ability. Using hidden abilities is now optional. By default enabled (previous behaviour).
+- Battle AIs: Item: 'Add Hidden Items' setting available when using a random item. Using hidden items is now optional. By default enabled (previous behaviour).
+- Formulas: Select Item: 'Filter Settings' available. Optionally filter items and equipment by variable conditions.
+- Schematics, Formulas, Battle AIs: Select Ability: 'Add Hidden Abilities' setting available when using 'All Abilities'. Using hidden abilities is now optional. By default enabled (previous behaviour).
+- Schematics, Formulas, Battle AIs: Select Items: 'Add Hidden Items' setting available when using 'All Items'. Using hidden items is now optional. By default enabled (previous behaviour).
+- Unity UI: HUD Inventory List Component: 'HUD Inventory List' component available. Lists the content (e.g. items, equipment, etc.) of a combatant's inventory using shortcut UI.
+
+Changes:
+- Equipment, Prefab View Portraits: Displaying the portrait of a prefab will now use the current menu/shop user (if available) for combatant object variable checks of the equipment's conditional prefabs.
+
+Fixes:
+- Combatants, Passive Abilities: Random Status Bonuses: Fixed an issue where random status bonuses of passive abilities where ignored.
+- Menu Screens: Inventory, Inventory Container (Slots), Multi Content: Fixed an issue where drag+drop on the same UI box without using 'Drop Slit' settings could cause an error.
+- Phase Battle System, Status Effects: Fixed an issue where 'Phase Start' effect duration or use on setups didn't work if the phase battle system's 'Auto Start Turn' setting wasn't set to 'Phase Start'.
+- Battle Grid Highlights: Line Renderer: Fixed an issue where line positions where wrong when using rotated grids.
+- Schematics: Change Shortcut, Check Shortcut: Using 'Use Selected Data' when changing or checking shortcuts now also uses value selection fields for 'Shortcut List Index' and 'Shortcut Slot Index' settings. Previous settings are updated automatically.
+- Equipment Viewer Components: Fixed an issue where equipment viewers checked the player's variables instead of the wearer's variables for object variable conditions used by the equipment's conditional prefabs.
+- Editor: Abilities: Fixed an issue where changing an ability between active and passive didn't reset the ability's levels, leading to not correctly set up level settings.
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+ORK Framework 3.17.0
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+New:
+- Item Collectors, Battles, Combatant Spawners: 'Is Global' setting available for scene IDs. Optionally use a global scene ID that's shared across all scenes. E.g. use this for unique battles or item collectors that should only be used once, independent of the scene.
+- Combatant Spawners, Add Combatant: 'Is Global' setting available for 'Remember Combatant' GUIDs. Optionally use a global GUID to remember combatants across all scenes. E.g. use this to have a unique combatant share it's status in multiple scenes.
+- Status Conditions: Bestiary: 'Bestiary' status condition check type available. Checks if the combatant has an entry in the bestiary. Can optionally check for a complete entry.
+- Status Effects: Duration: 'Phase Start' and 'Phase End' types available. Status effect duration can now use phases in 'Phase' type battles. Can be reduced in any phase or the phase of the user or target.
+- Status Effects: Duration: 'Custom' type available. Status effect duration is reduced when a schematic uses a 'Custom Status Effect' node with a matching key on the combatant.
+- Status Effects: Status Changes: Use On: 'Phase Start' and 'Phase End' types available. Status changes can now be used based on phases in 'Phase' type battles. Can be be used in any phase or the phase of the user or target.
+- Status Effects: Status Changes: Use On: 'Custom' type available. Status changes are used when a schematic uses a 'Custom Status Effect' node with a matching key on the combatant.
+- Status Effects: Status Changes: Applied Duration Check: 'Phases' duration check type available. Checks the number of phases an effect is applied (any phase).
+- Status Effects: Status Changes: Applied Duration Check: 'Custom' duration check type available. Checks the number of times a 'Custom Status Effect' node was used on the combatant (any key).
+- Abilities: Passive: 'Toggle On' and 'Toggle Off' settings available. Optionally use conditions and use costs/status changes when toggling a passive ability on or off. E.g. use the use costs for toggling on to reduce a consumable status value and the use costs of toggling off to increase the status value again.
+- Abilities, Items: Status Changes: 'Inventory Add' change type available. Adds an item to the combatant's inventory.
+- Abilities, Items: Status Changes: 'Inventory Remove' change type available. Removes an item from the combatant's inventory. When used as use costs it'll be displayed via the use costs text and is also a requirement to use the action (unless 'Exceed Use Costs' is enabled).
+- Combatant Body Parts, Battle Menus: Status Changes: 'Inventory Add' change type available. Adds an item to the combatant's inventory.
+- Combatant Body Parts, Battle Menus: Status Changes: 'Inventory Remove' change type available. Removes an item from the combatant's inventory.
+- Battle AI: Change Found Targets: 'Change Found Targets' node available in 'Target' nodes. Changes the found targets using the first, last, a random or all found targets.
+- Menu Screens: Research (List View), Research (Tree View): 'Drag and Drop' settings available. The researched content of research items can be assigned to shortcut slots by dragging or click-dragging. This'll only work on research items that represent things already known or owned by the combatant, e.g. an already researched ability.
+- Menu Screens: Research (List View), Research (Tree View): Details Box Settings: 'Back After Start' setting available in 'Use' details box mode. Optionally return to the research item/tree view box after starting research.
+- Menu Screens: Sub Menus: 'Show Preview' setting available. Optionally show a status preview of the sub menu's content (e.g. an equipment or abiltiy) while the sub menu is open.
+- Battle Menus: Options: Selected Data (Shortcuts): 'Selected Data (Shortcuts)' option type available. Lists shortcuts (e.g. abilities, items) stored in selected data as battle menu options. Each viable shortcut will be added as it's own button.
+- Battle End: Level Up Texts: Status Value Text: 'All Status Values' settings available. Listing all status value changes is now optional. When disabled, only defined status values will be listed (can include hidden status values). By default enabled, listing all status value changes (previous behaviour).
+- Notifications: 'Max Display Count' setting available when using 'Queue' notification mode. Defines how many notification can be displayed at the same time before being queued.
+- Schematics: Select Status Effect: 'Select Status Effect' node available in 'Value > Selected Data' nodes. Uses status effects of combatants as selected data.
+- Schematics: Custom Status Effect: 'Custom Status Effect' node available in 'Combatant > Status' nodes. Reduces duration and uses status changes of status effects using custom duration/use on settings with a matching key. Uses the status effects of a combatant or stored in selected data.
+- Schematics: Change Status Effect: 'Use Selected Data' settings available. Optionally use status effects stored in selected data to add, remove or toggle effects on combatants. Can optionally use the remaining duration of the stored effects.
+- Schematics: Change Effect Duration: 'Use Selected Data' settings available. Optionally change the duration of status effects stored in selected data.
+- Schematics: Store Use Range: 'Store Use Range' node available in 'Battle > Action' nodes. Stores the use range of an ability, item or action stored in selected data into a float variable.
+- Schematics: Store Affect Range: 'Store Affect Range' node available in 'Battle > Action' nodes. Stores the affect range of an ability, item or action stored in selected data into a float variable.
+- Schematics: Remove Scene Data: 'Scene Type' setting available. Defines if the global scene data (shared by all scenes), the data of all scenes (excluding global scene data) or a defined scene's data will be removed. Previous setups will be updated automatically.
+- Schematics: Change Scene ID, Is Item Collected, Is Battle Finished: 'Global Scene' setting available. Optionally change/check the scene ID in the global scene data instead of a defined scene. Global scene data is shared by all scenes, e.g. having a unique item collector in multiple scenes.
+- Cursor Prefab Components: Schematic: The 'Schematic' variants of cursor prefab components (for combatant highlights, target selections and target raycast cursors) have the game object of the cursor available as local selected data via the data key 'cursor'.
+- Unity UI: HUD Attack Modifier List, HUD Attack Modifier Attribute List: 'Target Action Trait' setting available when listing 'Strength', 'Weakness', 'Immunity' or 'Recovery' modifiers/attributes. Optionally base the displayed attribute traits on the currently selected action during target selection of the player. E.g. use this to display if a combatant has a weakness to the selected ability's attack modifiers.
+- Unity UI: HUD Conditions: Is Player: 'Is Player' condition available. Checks if the HUD user is the player (requires a combatant).
+
+Changes:
+- Status Effects: End Settings: 'Turn/Time Duration' setting has been renamed to 'Duration'.
+- Battle Grids: Movement: Grid pathfinding will now prioritize empty cells when move over allies/enemies is allowed. This can result in slightly different paths than before, but works better when the last cell(s) of a path are occupied.
+- Schematics, Formulas: Check Equipment: The 'Level' setting has been replaced by 'Level Check' settings, allowing more detailed level comparison (e.g. equals, range checks, etc.).
+- Schematics: In Use Range: Can now also check the position of game objects that are not combatants or cells for being in use range.
+- Schematics: Change Shortcut, Check Shortcut: 'Shortcut List Index' and 'Shortcut Slot Index' settings now use value selections instead of fix values. Previous settings are updated automatically.
+- Status Conditions: Equipment: The 'Level' setting has been replaced by 'Level Check' settings, allowing more detailed level comparison (e.g. equals, range checks, etc.).
+- Menu Screens: Inventory Exchange: The inventory exchange menu part will now output a warning to the console when opened without an inventory (e.g. using 'Selected Data' inventory source without having something with an inventory stored in it).
+
+Fixes:
+- Menu Screens: Types: Fixed an issue where using an 'All Types' button and only using defined types could list all available types instead of only all defined types.
+- Menu Screens: Equipment: Fixed an issue where disabling 'Show Equip Box' blocked all settings below it, even in other menu screen parts.
+- Menu Screens: Quest: Fixed an issue where quests of hidden types where listed in merged types or 'All Types' button display.
+- Status Effects: Fixed an issue where adding effect stacks didn't work when used by certain setups (e.g. coming from status effect changes).
+- Abilities: Passive: Fixed an issue where passive abilities set to 'Start Disabled' started enabled.
+- Abilities: Passive: Fixed an issue where a toggleable passive ability's toggle state wasn't saved.
+- Abilities, Items, Schematics: Fixed an issue where 'None' target range prevented calculating the action's outcome when using a 'Calculate Action' node.
+- Classes, Shortcut Slots: Fixed an issue where auto adding abilities from classes to shortcut slots didn't work.
+- Status Bonuses, Random Status Bonuses: Status Value Change Modifier: Fixed an issue where 'Positive' change types wheren't used correctly.
+- Start Menu: New Game: Fixed an issue where returning to the start menu from a played game could lead to the start menu being opened again when selecting new game.
+- Menu Screens: Ability: Fixed an issue where toggleable passive abilities could call a combatant selection instead of toggling enabled/disabled.
+- HUDs: Turn Order: Fixed an issue where the first combatant's HUD in the turn order list could be immediately removed instead of using it's closing schematics when using 'Multi Turns' mode in a 'Turn Based' battle system.
+- Shops, Loot: Fixed an issue where using loot to fill a shop's stock didn't allow using combatants from loot.
+- Move AIs: Fixed an issue that could lead to combatants getting stuck at the move range when trying to reach an action target.
+- Battle System: Turn Bonuses: Fixed an issue where turn bonuses where used twice at the start of a new turn.
+- Phase Battle System: Player Combatant Selection: Fixed an issue that caused an error when using the 'Next Combatant Key' while no combatant is selected.
+- Schematics: Lock Equipment Slot: Fixed an issue where using 'Lock All' didn't work.
+- Schematics: Filter Selected Combatants: Fixed an issue where the 'Enemy Check' was reversed.
+- Unity UI: Quest List HUD: Fixed an issue where quests of hidden types where listed. Now they're only listed if the type is defined to be listed.
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
 ORK Framework 3.16.3
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -932,7 +1113,7 @@ Fixes:
 - HUDs: Value Bars: Cast Time, Delay Time, Reuse Time, Status Effect Duration: Fixed an issue where the value bar didn't reach full or empty state due to the last time update no longer registering (e.g. cast time ended).
 - HUDs: Console: Fixed an issue where the 'Auto Scroll Down' settings where hidden.
 - HUDs: Shortcut Slots: Fixed an issue where shortcut slot tooltips didn't show status change previews.
-- Battle Menu: Description: Fixed an issue where special actions (e.g. grid move, defend, etc.) didn't provide content for text codes when displaying custom description content.
+- Battle Menus: Description: Fixed an issue where special actions (e.g. grid move, defend, etc.) didn't provide content for text codes when displaying custom description content.
 - Combatant Highlights: HUDs: Fixed an issue where blinking HUDs could be stopped by flashes or other HUD fades and not restored after the other fade finished. E.g. a battle menu's user highlight being stopped by a flash or target selection highlight.
 - Camera Controls: Transitions: Fixed an issue where transitioning rotations started from the wrong rotation.
 - Battle AIs, Action Targeting: Fixed an issue where using battle AIs in 'Queue' mode could result in all out of range targets being used for 'Single' target range actions. E.g. an ability that should target a single combatant targeted multiple instead.

@@ -1,4 +1,67 @@
 -------------------------------------------------------------------------------------------------------------------------------------------------------
+Makinom 2.16.1
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Fixes:
+- Scene Object Components: Cursor: Fixed an issue where mouse cursor changes where not undone if the game object is destroyed while the cursor is over it.
+- Editor: Variable Conditions: Fixed an issue that could cause data changes being recognized when using 'Template' variable conditions although no data was changed.
+- Schematics: Save Game Exists: Fixed an issue where checking 'Retry' didn't work.
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+Makinom 2.16.0
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+New:
+- Unity 6: Makinom 2 now supports Unity 6.
+- Movement Components: Nav Mesh Agent: 'Use Root Motion' settings available. Optionally use an 'Animator' component's root motion for position changes instead of the NavMesh agent.
+- Save Games: Auto Save Slots: 'Use Delete Key' setting available in auto save slot selections. Optionally allow deleting existing auto save slots in the auto save slot selection.
+- Schematics: Unity Console: 'Add Schematic Name' setting available. Optionally add the name of the schematic at the start of the console output. By default enabled, adding the name.
+
+Changes:
+- Schematics, Machine Components: Resource Overrides: Overriding prefabs will now use the pooling settings defined in the schematic. Previously pooling was ignored when the prefab was replaced by an override.
+
+Fixes:
+- Formulas: Selected Data: Fixed an issue where formula didn't create their own local selected data unless they where forwarded local data from their call (e.g. a schematic).
+- Text Codes: Fixed an issue where text codes for sub-data where not used.
+- Save Games: Auto Save Slots: Fixed an issue where auto save slot selection could use the wrong slot.
+- Spawn Points: Fixed an issue that could result in wrong spawn positions when using a 2D collider to define a spawn area.
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+Makinom 2.15.4
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+New:
+- HUDs: Tooltip: Tooltip Checks: Custom: 'Custom' tooltip type check available. Checks if a tooltip is a custom tooltip, either allowing all custom tooltips or from defined custom tooltip keys.
+- Unity UI: UI Custom Tooltip Components: 'UI Custom Tooltip' components available. Adds a custom tooltip to a part of your UI with a defined content (e.g. name, description and icon). Custom tooltips can use a 'Custom Tooltip Key' to use separate tooltip HUDs to display them.
+
+Changes:
+- Unity UI: UI Box Components: Having both 'Horizontal Input Change' and 'Vertical Input Change' set to 0 to use Unity's direction based input selection will now force using vertical input change 1 when the UI box is disabled (e.g. when using a hidden target menu in ORK Framework 3). Directional input based on UI positions was otherwise not working correctly due to the disabled state of UI game objects.
+
+Fixes:
+- UI Boxes: Typewriter: Fixed an issue where the 'Typewriter Finished Object' wasn't enabled when the typewriter effect finished on it's own.
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+Makinom 2.15.3
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+New:
+- Schematics: Store NavMesh Path: 'Store NavMesh Path' node available in 'Movement > NavMesh' nodes. Stores the current path (corners) of a NavMesh agent into a Vector 3 variable list.
+- Schematics: Change Line Renderer Positions: 'Change Line Renderer Positions' node available in 'Game Object > Renderer' nodes. Sets the positions of a 'Line Renderer' component using a Vector 3 variable list.
+- Schematics: Show Dialogue: Notification: 'Max Display Count' setting available when using 'Queue' notification mode. Defines how many notification can be displayed at the same time before being queued.
+
+Changes:
+- Tagged Machine Components: A tagged machine will now be registered when it's component is enabled (and unregistered when disabled), greatly improving performance for the 'Search Tagged Machines' node and other tagged machine nodes accessing all in the scene. You can access all registered tagged machines via scripting using 'TaggedMachineComponent.Available'.
+
+Fixes:
+- Schematics: Change Rotation: Fixed an issue where using intpolation could result in different rotation directions based on the current rotation of the game object.
+- Schematics: Value Option Dialogue: Custom: Fixed an issue where using custom 'Int' values used float variables/PlayerPrefs instead of int.
+- Editor: Filters: Fixed an issue where using filters didn't change the list on first use.
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
 Makinom 2.15.2
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 
