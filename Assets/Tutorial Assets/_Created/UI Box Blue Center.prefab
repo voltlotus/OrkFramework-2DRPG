@@ -771,7 +771,7 @@ GameObject:
   - component: {fileID: 7752967939351759804}
   - component: {fileID: 3434688111155469631}
   m_Layer: 5
-  m_Name: UI Box
+  m_Name: UI Box Blue Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
