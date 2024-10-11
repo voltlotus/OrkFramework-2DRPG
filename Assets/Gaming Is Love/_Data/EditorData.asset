@@ -21,11 +21,11 @@ MonoBehaviour:
   tabIndex: 0
   scrollY: 0
   foldoutLimit: 
-  helpDrag: 84
+  helpDrag: 53
   subSectionDrag: 250
   tabListDrag: 250
   formulaDrag: 250
-  schematicDrag: 211
+  schematicDrag: 219
   jumpListDrag: 250
   dataSelectionSorting: 0
   typeDataSelectionSorting: 0
@@ -36,6 +36,9 @@ MonoBehaviour:
   updateScenes: 0
   sceneUpdate: 
   schematicAsset:
+  - {fileID: 11400000, guid: 3a4fa413a96e4b5449c3294a5e88ab08, type: 2}
+  - {fileID: 11400000, guid: cf3acd1eb2fc6c7499d97e11708d6ba2, type: 2}
+  - {fileID: 11400000, guid: 743dfe737e6d074468bd5062ca4143e6, type: 2}
   - {fileID: 11400000, guid: 99aa32caec9fd6642bd4eb8c1e024e1c, type: 2}
   - {fileID: 11400000, guid: 03558789351d2b44ab6d25bdb54647a7, type: 2}
   - {fileID: 11400000, guid: ce9af4cf502d01847abfed8b29c43b28, type: 2}
